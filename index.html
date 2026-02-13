@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjoint Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <div class="container">
+            <h1>Conjoint Analysis Study</h1>
+            <div class="selection-buttons">
+                <button class="conjoint-btn" onclick="selectConjoint('A')">Conjoint A</button>
+                <button class="conjoint-btn" onclick="selectConjoint('B')">Conjoint B</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Questions Page -->
+    <div id="questions-page" class="page">
+        <!-- Progress Bar at Top -->
+        <div class="top-progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        
+        <!-- Question Header Container -->
+        <div class="question-header-container">
+            <div class="question-text-section">
+                <span class="question-number" id="question-number">Question 1/10</span>
+                <h2 id="question-title">Which seat arrangement would you be more comfortable sitting in?</h2>
+            </div>
+            <button class="next-btn-header" id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+        
+        <!-- Question Content -->
+        <div class="question-content">
+            <div class="image-pair">
+                <div class="image-option-container">
+                    <div class="image-wrapper">
+                        <img id="option-a" src="" alt="Option A">
+                    </div>
+                    <div class="option-choice">
+                        <input type="radio" id="radio-a" name="seat-choice" value="A" onchange="selectOption('A')">
+                        <label for="radio-a">I would be more comfortable seating in this row.</label>
+                    </div>
+                </div>
+                <div class="image-option-container">
+                    <div class="image-wrapper">
+                        <img id="option-b" src="" alt="Option B">
+                    </div>
+                    <div class="option-choice">
+                        <input type="radio" id="radio-b" name="seat-choice" value="B" onchange="selectOption('B')">
+                        <label for="radio-b">I would be more comfortable seating in this row.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            <!-- Instruction Overlay -->
+            <div id="instruction-overlay" class="instruction-overlay">
+                <div class="instruction-modal">
+                    <img src="assets/conjoint-b/instruction.png" alt="Instructions" class="instruction-image">
+                    <button class="proceed-btn" onclick="closeInstructions()">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conjoint A Questions Page -->
+    <div id="conjoint-a-page" class="page">
+        <!-- Progress Bar at Top -->
+        <div class="top-progress-bar">
+            <div class="progress-fill" id="progress-fill-a"></div>
+        </div>
+        
+        <!-- Question Header Container -->
+        <div class="question-header-container">
+            <div class="question-text-section">
+                <span class="question-number" id="question-number-a">Question 1/10</span>
+                <h2 id="question-title-a">Which row would you be more comfortable sitting in?</h2>
+            </div>
+            <button class="next-btn-header" id="next-btn-a" onclick="nextQuestionA()" disabled>Next</button>
+        </div>
+        
+        <!-- Question Content -->
+        <div class="question-content">
+            <div class="team-comparison">
+                <div class="team-container">
+                    <div class="team-image-wrapper">
+                        <img id="team-image-a" src="" alt="Team A Organization Chart" class="team-org-chart">
+                    </div>
+                    <div class="team-choice">
+                        <input type="radio" id="radio-team-a" name="team-choice" value="A" onchange="selectTeam('A')">
+                        <label for="radio-team-a">I would be more comfortable working in this team</label>
+                    </div>
+                    <div class="comfort-slider">
+                        <label class="slider-label">How comfortable are you working with this team?</label>
+                        <div class="slider-container">
+                            <span class="slider-min">1</span>
+                            <input type="range" id="slider-a" class="comfort-range" min="1" max="100" value="50" oninput="updateSliderA(this.value)">
+                            <span class="slider-max">100</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-container">
+                    <div class="team-image-wrapper">
+                        <img id="team-image-b" src="" alt="Team B Organization Chart" class="team-org-chart">
+                    </div>
+                    <div class="team-choice">
+                        <input type="radio" id="radio-team-b" name="team-choice" value="B" onchange="selectTeam('B')">
+                        <label for="radio-team-b">I would be more comfortable working in this team</label>
+                    </div>
+                    <div class="comfort-slider">
+                        <label class="slider-label">How comfortable are you working with this team?</label>
+                        <div class="slider-container">
+                            <span class="slider-min">1</span>
+                            <input type="range" id="slider-b" class="comfort-range" min="1" max="100" value="50" oninput="updateSliderB(this.value)">
+                            <span class="slider-max">100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <!-- Instruction Overlay for Conjoint A -->
+        <div id="instruction-overlay-a" class="instruction-overlay">
+            <div class="instruction-modal">
+                <img src="assets/conjoint-a/instruction.png" alt="Instructions" class="instruction-image">
+                <button class="proceed-btn" onclick="closeInstructionsA()">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results-page" class="page">
+        <div class="container">
+            <h2>Thank you for completing the study!</h2>
+            <div class="results-summary">
+                <h3>Your Responses:</h3>
+                <div id="results-list"></div>
+            </div>
+            <button class="restart-btn" onclick="restartStudy()">Start Over</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
